@@ -1,4 +1,5 @@
-import java.security.PublicKey;
+package Game;
+
 import java.util.Objects;
 
 abstract public class Entity {
@@ -8,8 +9,32 @@ abstract public class Entity {
 
     public Entity(String name, int health, int attackPower) {
         this.name = name;
-        this.health = (health<0) ? 1 : health;
+        this.setHealth(health);
+        setAttackPower(attackPower);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public void setAttackPower(int attackPower) {
         this.attackPower = (attackPower < 0)? 0: attackPower ;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHealth(int health) {
+        this.health = (health<0) ? 1 : health;
     }
 
     public boolean  isAlive(){
@@ -31,10 +56,8 @@ abstract public class Entity {
 
     @Override
     public String toString() {
-        return "Entity{" +
-                "name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", health=" + health +
-                ", attackPower=" + attackPower +
-                '}';
+                ", attackPower=" + attackPower ;
     }
 }
