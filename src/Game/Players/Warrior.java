@@ -8,9 +8,9 @@ import java.util.Objects;
 
 public class Warrior extends Player implements Attackable {
     private int armor;
-    public Warrior(String name, int health, int attackPower, int armor) {
-        super(name, health, attackPower);
-        setArmor(armor);
+    public Warrior(String name) {
+        super(name, 20, 5);
+        setArmor(10);
     }
 
     public int getArmor() {

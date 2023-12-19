@@ -1,10 +1,48 @@
 package Game;
 
+import Game.Entity.Monster;
+import Game.Entity.Player;
+import Game.Players.Archer;
+import Game.Players.Mage;
+import Game.Players.Warrior;
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println( " Hi! Choose a class: ");
+        System.out.println(" enter 1 to Warrior;");
+        System.out.println(" enter 2 to Mage;");
+        System.out.println(" enter 3 to Archer;");
+        int numClass = sc.nextInt();
+        System.out.println("Enter your character's name: ");
+        String charName = sc.nextLine();
+        switch (numClass){
+            case 1:
+                Player warrior = new Warrior(charName);
+                break;
+            case 2:
+                Player mage = new Mage(charName);
+                break;
+            case 3:
+                Player archer = new Archer(charName);
+                break;
+            default:
+                System.out.println("wrong choice(");
+        }
+
+        Monster monster = new Monster("Tyzik",
+                new Random().nextInt(20),
+                new Random().nextInt(20));
     }
 }
+
+
+
+
 //Сложность: легко (3/10)
 //
 //        Создаем свою первую игру.

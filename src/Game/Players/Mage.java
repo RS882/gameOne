@@ -9,8 +9,9 @@ public class Mage extends Player implements Attackable {
 
     private double mana;
 
-    public Mage(String name, int health, int attackPower, double mana) {
-        super(name, health, attackPower);
+    public Mage(String name) {
+        super(name, 10, 4);
+        setMana(6);
 
     }
 

@@ -6,9 +6,10 @@ import Game.Entity.Player;
 import java.util.Random;
 
 public class Archer extends Player implements Attackable {
-    public Archer(String name, int health, int attackPower) {
-        super(name, health, attackPower);
+    public Archer(String name) {
+        super(name, 10, 5);
     }
+
 
 
     private boolean eventShouldOccur(double chance) {
