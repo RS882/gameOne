@@ -1,6 +1,4 @@
-package Game;
-
-import Game.Attackanble.Attackable;
+package Game.Entity;
 
 public class Monster extends Entity  {
     public Monster(String name, int health, int attackPower) {

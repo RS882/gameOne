@@ -1,4 +1,4 @@
-package Game;
+package Game.Entity;
 
 
 abstract public class Player extends Entity {

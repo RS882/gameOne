@@ -1,7 +1,7 @@
 package Game.Players;
 
 import Game.Attackanble.Attackable;
-import Game.Player;
+import Game.Entity.Player;
 
 import java.util.Objects;
 
@@ -24,8 +24,12 @@ public class Mage extends Player implements Attackable {
 
     @Override
     public int getAttackPower() {
-        if (this.mana < 1) return 0;
-        else {
+        if (this.mana < 1) {
+
+            System.out.printf("Mage (%s) was unable to attack because he ran out of mana!%n",
+                    this.getName());
+            return 0;
+        }else {
             this.mana--;
             return this.getAttackPower() * 2;
         }

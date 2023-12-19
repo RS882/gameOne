@@ -1,8 +1,8 @@
 package Game.Players;
 
 import Game.Attackanble.Attackable;
-import Game.Entity;
-import Game.Player;
+import Game.Entity.Entity;
+import Game.Entity.Player;
 
 import java.util.Objects;
 

@@ -1,7 +1,7 @@
 package Game.Players;
 
 import Game.Attackanble.Attackable;
-import Game.Player;
+import Game.Entity.Player;
 
 import java.util.Random;
 
@@ -17,6 +17,14 @@ public class Archer extends Player implements Attackable {
     @Override
     public int getAttackPower() {
         return eventShouldOccur(20)? super.getAttackPower()*2: super.getAttackPower();
+    }
+
+    @Override
+    public void takeDamage(Attackable source) {
+       if(!eventShouldOccur(25)) super.takeDamage(source);
+       else{
+           System.out.printf("Archer (%s) dodged the attack!%n", this.getName());
+       }
     }
 
     @Override
