@@ -1,7 +1,7 @@
 import java.security.PublicKey;
 import java.util.Objects;
 
-abstract class Entity {
+abstract public class Entity {
     private String name;
     private int health;
     private int attackPower;
