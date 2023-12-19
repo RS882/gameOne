@@ -1,11 +1,12 @@
 package Game.Players;
 
+import Game.Attackanble.Attackable;
 import Game.Entity;
 import Game.Player;
 
 import java.util.Objects;
 
-public class Warrior extends Player {
+public class Warrior extends Player implements Attackable {
     private int armor;
     public Warrior(String name, int health, int attackPower, int armor) {
         super(name, health, attackPower);
@@ -30,6 +31,13 @@ public class Warrior extends Player {
         return armor == warrior.armor && super.equals(o) ;
     }
 
+    @Override
+    public void takeDamage(Attackable source) {
+        int att = ((Entity) source).getAttackPower()- this.armor/2;
+        att = att<0? 0 : att;
+        int res = this.getHealth() - att;
+        setHealth(res );
+    }
 
     @Override
     public int hashCode() {
@@ -42,6 +50,8 @@ public class Warrior extends Player {
                 " armor=" + armor +
                 '}';
     }
+
+
 }
 
 

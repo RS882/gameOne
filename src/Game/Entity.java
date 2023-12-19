@@ -1,8 +1,10 @@
 package Game;
 
+import Game.Attackanble.Attackable;
+
 import java.util.Objects;
 
-abstract public class Entity {
+abstract public class Entity implements Attackable {
     private String name;
     private int health;
     private int attackPower;
@@ -40,6 +42,21 @@ abstract public class Entity {
     public boolean  isAlive(){
         return health !=0 ? true: false;
     }
+
+    @Override
+    public void attack(Attackable target) {
+
+        int res = ((Entity) target).getHealth()- this.getAttackPower();
+        ((Entity) target).setHealth(res);
+    }
+
+
+    @Override
+    public void takeDamage(Attackable source) {
+
+            int res = this.getHealth() - ((Entity) source).getAttackPower();
+            setHealth(res);
+        }
 
     @Override
     public boolean equals(Object o) {

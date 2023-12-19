@@ -1,10 +1,11 @@
 package Game.Players;
 
+import Game.Attackanble.Attackable;
 import Game.Player;
 
 import java.util.Objects;
 
-public class Mage extends Player {
+public class Mage extends Player implements Attackable {
 
     private double mana;
 
@@ -19,6 +20,22 @@ public class Mage extends Player {
 
     public void setMana(double mana) {
         this.mana = (mana < 0) ? 1 : mana;
+    }
+
+    @Override
+    public int getAttackPower() {
+        if (this.mana < 1) return 0;
+        else {
+            this.mana--;
+            return this.getAttackPower() * 2;
+        }
+
+    }
+
+    @Override
+    public void takeDamage(Attackable source) {
+        super.takeDamage(source);
+        this.mana +=0.2;
     }
 
     @Override
@@ -37,8 +54,10 @@ public class Mage extends Player {
 
     @Override
     public String toString() {
-        return "Mage{ "  + super.toString() +
+        return "Mage{ " + super.toString() +
                 " mana=" + mana +
                 '}';
     }
+
+
 }
