@@ -41,6 +41,7 @@ public class Mage extends Player implements Attackable {
     public void takeDamage(Attackable source) {
         super.takeDamage(source);
         this.mana +=0.2;
+        damageInfo(source);
     }
 
     @Override

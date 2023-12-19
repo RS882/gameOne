@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Warrior extends Player implements Attackable {
     private int armor;
+
     public Warrior(String name) {
         super(name, 20, 5);
         setArmor(10);
@@ -18,7 +19,7 @@ public class Warrior extends Player implements Attackable {
     }
 
     public void setArmor(int armor) {
-        this.armor = armor <0 ? 1 : armor;
+        this.armor = armor < 0 ? 1 : armor;
     }
 
     @Override
@@ -28,15 +29,17 @@ public class Warrior extends Player implements Attackable {
         if (!super.equals(o)) return false;
 
         Warrior warrior = (Warrior) o;
-        return armor == warrior.armor && super.equals(o) ;
+        return armor == warrior.armor && super.equals(o);
     }
 
     @Override
     public void takeDamage(Attackable source) {
-        int att = ((Entity) source).getAttackPower()- this.armor/2;
-        att = att<0? 0 : att;
+
+        int att = ((Entity) source).getAttackPower() - this.armor / 2;
+        att = att < 0 ? 0 : att;
         int res = this.getHealth() - att;
-        setHealth(res );
+        setHealth(res);
+        damageInfo(source);
     }
 
     @Override
