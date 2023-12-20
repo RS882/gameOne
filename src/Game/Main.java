@@ -18,12 +18,12 @@ public class Main {
         System.out.println(" enter 1 to Warrior;");
         System.out.println(" enter 2 to Mage;");
         System.out.println(" enter 3 to Archer;");
-//            char numClass = sc.nextLine().charAt(0);
-        char numClass = '3';
-        //   sc.nextLine();
+           char numClass = sc.nextLine().charAt(0);
+
+         sc.nextLine();
         System.out.println("Enter your character's name: ");
-//        String charName = sc.nextLine();
-        String charName = "Warior";
+     String charName = sc.nextLine();
+
         Player player = null;
         switch (numClass) {
             case '1':
