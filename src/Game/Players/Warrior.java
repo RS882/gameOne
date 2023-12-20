@@ -34,12 +34,13 @@ public class Warrior extends Player implements Attackable {
 
     @Override
     public void takeDamage(Attackable source) {
-
-        int att = ((Entity) source).getAttackPower() - this.armor / 2;
+        int attackSource = ((Entity) source).getAttackPower();
+        int att = attackSource - this.armor / 2;
         att = att < 0 ? 0 : att;
+        this.attackInfo(source,attackSource);
         int res = this.getHealth() - att;
         setHealth(res);
-        damageInfo(source);
+        damageInfo(source,att);
     }
 
     @Override

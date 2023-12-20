@@ -10,8 +10,8 @@ public class Mage extends Player implements Attackable {
     private double mana;
 
     public Mage(String name) {
-        super(name, 10, 4);
-        setMana(6);
+        super(name, 10, 5);
+        setMana(1);
 
     }
 
@@ -31,8 +31,8 @@ public class Mage extends Player implements Attackable {
                     this.getName());
             return 0;
         }else {
-            this.mana--;
-            return this.getAttackPower() * 2;
+            this.mana-=1;
+            return super.getAttackPower() * 2;
         }
 
     }
@@ -41,7 +41,7 @@ public class Mage extends Player implements Attackable {
     public void takeDamage(Attackable source) {
         super.takeDamage(source);
         this.mana +=0.2;
-        damageInfo(source);
+
     }
 
     @Override

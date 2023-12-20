@@ -45,28 +45,37 @@ abstract public class Entity implements Attackable {
 
     @Override
     public void attack(Attackable target) {
-        attackInfo(target);
+
        target.takeDamage(this);
     }
 
     @Override
     public void takeDamage(Attackable source) {
 
-        int res = this.getHealth() - ((Entity) source).getAttackPower();
-        this.setHealth(res);
-        this.damageInfo(source);
-    }
-    public void attackInfo(Attackable target){
-        String classNameTarget = target.getClass().getSimpleName();
-        String classNameThis = this.getClass().getSimpleName();
-        String nameTarget = ((Entity) target).getName();
+    int sourceAttack =  ((Entity) source).getAttackPower();
 
-        System.out.printf("%s (%s) attacks %s (%s) with strength %d!%n"
-                , classNameThis, this.name, classNameTarget, nameTarget, this.getAttackPower());
+        this.attackInfo(source,sourceAttack);
+
+        this.setHealth(this.getHealth() - sourceAttack);
+
+        this.damageInfo(source,sourceAttack);
     }
-    public void damageInfo(Attackable source){
-          System.out.printf("%s (%s) has taken %d damage! His health is now %d!%n"
-                ,  this.getClass().getSimpleName(), this.getName(), ((Entity) source).getAttackPower(),this.getHealth());
+    public void attackInfo(Attackable target, int attack){
+
+        System.out.printf("%s (%s) attacks %s (%s) with strength %d!%n",
+                target.getClass().getSimpleName(),
+                ((Entity) target).getName(),
+                this.getClass().getSimpleName(),
+                this.name,
+
+                attack);
+    }
+    public void damageInfo(Attackable source, int attack){
+        System.out.printf("%s (%s) has taken %d damage! His health is now %d!%n",
+                 this.getClass().getSimpleName(),
+                  this.getName(),
+                  attack,
+                  this.getHealth());
     }
 
     @Override

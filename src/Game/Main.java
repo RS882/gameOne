@@ -20,7 +20,7 @@ public class Main {
         System.out.println(" enter 2 to Mage;");
         System.out.println(" enter 3 to Archer;");
 //            char numClass = sc.nextLine().charAt(0);
-        char numClass = '3';
+        char numClass = '2';
      //   sc.nextLine();
         System.out.println("Enter your character's name: ");
 //        String charName = sc.nextLine();
