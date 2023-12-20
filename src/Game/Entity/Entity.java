@@ -8,6 +8,16 @@ abstract public class Entity implements Attackable {
     private String name;
     private int health;
     private int attackPower;
+    private int damageReceived;
+
+
+    private int getDamageReceived() {
+        return damageReceived;
+    }
+
+    private void setDamageReceived(int damageReceived) {
+        this.damageReceived = damageReceived;
+    }
 
     public Entity(String name, int health, int attackPower) {
         this.name = name;
@@ -45,29 +55,28 @@ abstract public class Entity implements Attackable {
 
     @Override
     public void attack(Attackable target) {
+        int attack = this.getAttackPower();
+        ((Entity) target).setDamageReceived(attack);
+        if (attack != 0) this.attackInfo(target, attack);
 
-        target.takeDamage(this);
+
     }
 
     @Override
     public void takeDamage(Attackable source) {
 
-        int sourceAttack = ((Entity) source).getAttackPower();
-        if (sourceAttack != 0) this.attackInfo(source, sourceAttack);
+       this.setHealth(this.getHealth() - this.getDamageReceived());
+       this.damageInfo(source, this.getDamageReceived());
 
-        this.setHealth(this.getHealth() - sourceAttack);
-
-        this.damageInfo(source, sourceAttack);
     }
 
     protected void attackInfo(Attackable target, int attack) {
 
         System.out.printf("%s (%s) attacks %s (%s) with strength %d!%n",
-                target.getClass().getSimpleName(),
-                ((Entity) target).getName(),
                 this.getClass().getSimpleName(),
                 this.name,
-
+                target.getClass().getSimpleName(),
+                ((Entity) target).getName(),
                 attack);
     }
 

@@ -18,12 +18,12 @@ public class Main {
         System.out.println(" enter 1 to Warrior;");
         System.out.println(" enter 2 to Mage;");
         System.out.println(" enter 3 to Archer;");
-           char numClass = sc.nextLine().charAt(0);
-
-          sc.nextLine();
+//            char numClass = sc.nextLine().charAt(0);
+        char numClass = '3';
+        //   sc.nextLine();
         System.out.println("Enter your character's name: ");
-        String charName = sc.nextLine();
-
+//        String charName = sc.nextLine();
+        String charName = "Warior";
         Player player = null;
         switch (numClass) {
             case '1':
@@ -48,6 +48,7 @@ public class Main {
 
             while (true) {
                 player.attack(monster);
+                monster.takeDamage(player);
 
                 if (winOrLos(player, monster) !=null) {
                     System.out.println("--------------");
@@ -55,6 +56,7 @@ public class Main {
                     break;
                 }
                 monster.attack(player);
+                player.takeDamage(monster);
 
                 if (winOrLos(player, monster) !=null) {
                     System.out.println("--------------");

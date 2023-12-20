@@ -28,7 +28,6 @@ public class Warrior extends Player implements Attackable {
 
         int att = attackSource - this.armor / 2;
         att = att < 0 ? 0 : att;
-
         this.attackInfo(source,attackSource);
         int res = this.getHealth() - att;
         setHealth(res);
@@ -43,6 +42,8 @@ public class Warrior extends Player implements Attackable {
         Warrior warrior = (Warrior) o;
         return armor == warrior.armor && super.equals(o);
     }
+
+
 
     @Override
     public int hashCode() {
