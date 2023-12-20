@@ -1,5 +1,6 @@
 package Game;
 
+
 import Game.Entity.Entity;
 import Game.Entity.Monster;
 import Game.Entity.Player;
@@ -7,26 +8,24 @@ import Game.Players.Archer;
 import Game.Players.Mage;
 import Game.Players.Warrior;
 
-import java.sql.SQLOutput;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println( " Hi! Choose a class: ");
+        System.out.println(" Hi! Choose a class: ");
         System.out.println(" enter 1 to Warrior;");
         System.out.println(" enter 2 to Mage;");
         System.out.println(" enter 3 to Archer;");
-//            char numClass = sc.nextLine().charAt(0);
-        char numClass = '2';
-     //   sc.nextLine();
+           char numClass = sc.nextLine().charAt(0);
+
+          sc.nextLine();
         System.out.println("Enter your character's name: ");
-//        String charName = sc.nextLine();
-        String charName = "Warior";
+        String charName = sc.nextLine();
+
         Player player = null;
-        switch (numClass){
+        switch (numClass) {
             case '1':
                 player = new Warrior(charName);
                 break;
@@ -40,46 +39,39 @@ public class Main {
                 System.out.println("wrong choice(");
         }
 
-        Monster monster = new Monster("Tyzik",
-                new Random().nextInt(20),
-                new Random().nextInt(20));
-        if(player != null){
+        Monster monster = new Monster("Tyzik");
+
+        if (player != null) {
             System.out.println(player);
             System.out.println(monster);
             System.out.println("-----------Fight!------------------------");
 
-            while (true){
+            while (true) {
                 player.attack(monster);
 
-                if(!player.isAlive()) {
-                    System.out.println("You lost (");
-                    break;
-                } else if (!monster.isAlive() ){
-                    System.out.println("You win!");
+                if (winOrLos(player, monster) !=null) {
+                    System.out.println("--------------");
+                    System.out.println(winOrLos(player, monster));
                     break;
                 }
                 monster.attack(player);
 
-                if(!player.isAlive()) {
-                    System.out.println("You lost (");
-                    break;
-                } else if (!monster.isAlive() ){
-                    System.out.println("You win!");
+                if (winOrLos(player, monster) !=null) {
+                    System.out.println("--------------");
+                    System.out.println(winOrLos(player, monster));
                     break;
                 }
-
-
                 System.out.println("Do you want to keep fighting?");
                 System.out.println(" Enter 1 - yes");
                 System.out.println(" Enter any key - no");
                 char go = sc.nextLine().charAt(0);
-                if(go != '1'){
+                if (go != '1') {
                     System.out.println("Draw");
                     break;
                 }
 
             }
-        }else{
+        } else {
             System.out.println("There will be no fight. The player didn't show up.");
             System.out.println(monster);
         }
@@ -87,15 +79,12 @@ public class Main {
 
     }
 
+    public static String winOrLos(Entity p, Entity m) {
+        if (!p.isAlive()) return "You lost (";
+        else if (!m.isAlive()) return "You win!";
+        return null;
+    }
 }
-
-//        Перед началом боя вывести игрока и монстра в консоль для информации.
-//
-//        Бой должен происходить таким образом: игрок и монстр по очереди атакуют друг друга.
-//        После каждого обмена ударами должен выводиться вопрос "продолжить сражение?".
-//        Если пользователь введет да, сражение продолжается, если нет, сражение заканчивается ничьей.
-//        Сражение происходит до тех пор, пока монстр не будет повержен (вывести сообщение о выигрыше в таком случае),
-//        либо пока игрок не будет убит (вывести сообщение о проигрыше в таком случае).
 
 
 //Сложность: легко (3/10)

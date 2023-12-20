@@ -11,24 +11,23 @@ public class Mage extends Player implements Attackable {
 
     public Mage(String name) {
         super(name, 10, 5);
-        setMana(1);
+        setMana(2);
 
     }
 
-    public double getMana() {
+    protected double getMana() {
         return mana;
     }
 
-    public void setMana(double mana) {
+    private void setMana(double mana) {
         this.mana = (mana < 0) ? 1 : mana;
     }
 
     @Override
     public int getAttackPower() {
         if (this.mana < 1) {
-
             System.out.printf("Mage (%s) was unable to attack because he ran out of mana!%n",
-                    this.getName());
+             this.getName());
             return 0;
         }else {
             this.mana-=1;
@@ -41,7 +40,6 @@ public class Mage extends Player implements Attackable {
     public void takeDamage(Attackable source) {
         super.takeDamage(source);
         this.mana +=0.2;
-
     }
 
     @Override

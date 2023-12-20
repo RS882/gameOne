@@ -27,15 +27,15 @@ abstract public class Entity implements Attackable {
         return attackPower;
     }
 
-    public void setAttackPower(int attackPower) {
+    protected void setAttackPower(int attackPower) {
         this.attackPower = (attackPower < 0) ? 0 : attackPower;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public void setHealth(int health) {
+    protected void setHealth(int health) {
         this.health = (health < 0) ? 0 : health;
     }
 
@@ -46,21 +46,21 @@ abstract public class Entity implements Attackable {
     @Override
     public void attack(Attackable target) {
 
-       target.takeDamage(this);
+        target.takeDamage(this);
     }
 
     @Override
     public void takeDamage(Attackable source) {
 
-    int sourceAttack =  ((Entity) source).getAttackPower();
-
-        this.attackInfo(source,sourceAttack);
+        int sourceAttack = ((Entity) source).getAttackPower();
+        if (sourceAttack != 0) this.attackInfo(source, sourceAttack);
 
         this.setHealth(this.getHealth() - sourceAttack);
 
-        this.damageInfo(source,sourceAttack);
+        this.damageInfo(source, sourceAttack);
     }
-    public void attackInfo(Attackable target, int attack){
+
+    protected void attackInfo(Attackable target, int attack) {
 
         System.out.printf("%s (%s) attacks %s (%s) with strength %d!%n",
                 target.getClass().getSimpleName(),
@@ -70,12 +70,13 @@ abstract public class Entity implements Attackable {
 
                 attack);
     }
-    public void damageInfo(Attackable source, int attack){
+
+    protected void damageInfo(Attackable source, int attack) {
         System.out.printf("%s (%s) has taken %d damage! His health is now %d!%n",
-                 this.getClass().getSimpleName(),
-                  this.getName(),
-                  attack,
-                  this.getHealth());
+                this.getClass().getSimpleName(),
+                this.getName(),
+                attack,
+                this.getHealth());
     }
 
     @Override
